@@ -1,0 +1,70 @@
+19th Nov 2025
+=============
+
+
+    -> Version Control System - VCS 
+
+        -> What ?
+
+            -> Tracking Source Code 
+
+            -> Store Application Code / Configuration
+
+            -> Daily Changes From Development team will be placed in VCS 
+
+        -> Why ?    
+
+            -> Revert Changes 
+
+                -> Any Application has multiple versions 
+
+                    -> Why ?
+
+                        -> Application will always evolve over time ?
+
+                            -> WhatApps 
+
+                                -> Messaging Platform (initial) - v1 - 2k files 
+                                -> Audio Calls - v2 - 2.5k files 
+                                -> Video Calls - v3 (2024 - ALL GOOD) - 4.5k files 
+                                -> Payments - v4 ( 2025 ) (Issues will Calls ?) - 6.5k files 
+                                -> etc 
+
+                -> We have databases (Banking)
+
+                    -> HDFC Bank 
+
+                        -> creds
+                        -> user profile
+                        -> credits
+                        -> debits 
+                        -> transactions 
+
+                    -> Which transaction
+                    -> When transaction was made
+                    -> What transaction type 
+                    -> How much did we transact 
+
+                -> We have an Project Called Notepad++ 
+
+                    -> Want To Know 
+
+                        -> What Changes Were Done in Last 1 Week    
+                        -> What Changes Were Done in Last 1 Year
+                        -> Who Contributed More 
+                        -> What did they Contribute 
+
+        -> NOTE: No VCS i,e No TRACKING HISTORY 
+
+        -> In VSC Commits are unique identity numbers generated for 
+            every change 
+
+            -> commit id 40 digit hex code which stores following info 
+
+                -> who made change 
+                -> when they made change
+                -> what change they made 
+
+    -> Git      :   Client Software         [ Developer Utility]
+
+    -> GitHub   :   Server Side Software    [ Organization ]
