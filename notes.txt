@@ -68,3 +68,19 @@
     -> Git      :   Client Software         [ Developer Utility]
 
     -> GitHub   :   Server Side Software    [ Organization ]
+
+20th Nov 2025
+=============
+
+    -> Git Workflow 
+
+    -> Git Repo 
+
+    -> Git Commits 
+
+    -> Git Push 
+
+    -> Git Undo 
+
+    -> Git Detach State 
+
