@@ -1,0 +1,189 @@
+19th Nov 2025
+=============
+
+
+    -> Version Control System - VCS 
+
+        -> What ?
+
+            -> Tracking Source Code 
+
+            -> Store Application Code / Configuration
+
+            -> Daily Changes From Development team will be placed in VCS 
+
+        -> Why ?    
+
+            -> Revert Changes 
+
+                -> Any Application has multiple versions 
+
+                    -> Why ?
+
+                        -> Application will always evolve over time ?
+
+                            -> WhatApps 
+
+                                -> Messaging Platform (initial) - v1 - 2k files 
+                                -> Audio Calls - v2 - 2.5k files 
+                                -> Video Calls - v3 (2024 - ALL GOOD) - 4.5k files 
+                                -> Payments - v4 ( 2025 ) (Issues will Calls ?) - 6.5k files 
+                                -> etc 
+
+                -> We have databases (Banking)
+
+                    -> HDFC Bank 
+
+                        -> creds
+                        -> user profile
+                        -> credits
+                        -> debits 
+                        -> transactions 
+
+                    -> Which transaction
+                    -> When transaction was made
+                    -> What transaction type 
+                    -> How much did we transact 
+
+                -> We have an Project Called Notepad++ 
+
+                    -> Want To Know 
+
+                        -> What Changes Were Done in Last 1 Week    
+                        -> What Changes Were Done in Last 1 Year
+                        -> Who Contributed More 
+                        -> What did they Contribute 
+
+        -> NOTE: No VCS i,e No TRACKING HISTORY 
+
+        -> In VSC Commits are unique identity numbers generated for 
+            every change 
+
+            -> commit id 40 digit hex code which stores following info 
+
+                -> who made change 
+                -> when they made change
+                -> what change they made 
+
+    -> Git      :   Client Software         [ Developer Utility]
+
+    -> GitHub   :   Server Side Software    [ Organization ]
+
+20th Nov 2025
+=============
+
+    -> Git Workflow 
+
+    -> Git Repo 
+
+    -> Git Commits 
+
+    -> Git Push 
+
+    -> Git Undo 
+
+    -> Git Detach State 
+
+
+21st Nov 2025
+=============
+
+    -> A Server is a computer system which provides resources to other computers known as clients 
+        over internet / network 
+
+    -> Server From Hardware 
+
+        -> Processor 
+        -> Memory (RAM)
+        -> Storage (Hard Disk)
+        -> Network (LAN)
+
+    -> My Laptop == Server ? 
+
+        -> My Laptop is server ? 
+
+        -> A laptop can be used by one person at a time - Limited Hardware Configs 
+
+        -> A Server can be used by multiple persons at a time - Higher Hardware Configs
+
+        -> A laptop has GUI - Graphical User Interface  
+
+        -> A server has CLI - Command User Interface 
+
+    -> Server From Software  
+
+        -> Server Softwares helps you provide services 
+
+        -> Web Servers 
+
+            -> Any website we see on internet needs Web Server to run 
+
+            -> Web Serves helps you host Web Sites and Web Applications On WWW (internet)
+
+            -> Examples : Nginx, Apache, IIS(windows) etc 
+
+            -> HTTP / HTTPS - 80 / 443
+
+        -> Email Servers 
+
+            -> Email Serves helps you send and receive emails 
+
+            -> Examples : sendmail, postfix, sendgrid etc 
+
+            -> SMTP - 25 / 465 / 487
+
+        -> Database Servers 
+
+        -> Application Servers 
+
+    -> Servers to be rented on Cloud Platforms 
+
+        -> AWS, AZURE, GCP, OCI etc 
+
+    -> Server On Azure 
+
+        -> Server On Azure is called as Virtual Machine 
+
+    -> Azure Virtual Machines (VM's) is a part of Azure's cloud-computing platform, 
+        Microsoft, that "allows users to rent virtual computers(servers)" 
+        on which to run their "own computer applications".
+
+        -> Server                   ==> Azure Virtual Machine (VM)
+        -> Server Name              ==> VM Name 
+        -> Operating Systems        ==> Images ( Linux Ubuntu 22.04)
+        -> CPU + RAM                ==> Sizes (b1s, b2s etc)           
+        -> Login / Authentication   ==> Key Pairs (Public Key & Private Key)
+        -> Network                  ==> VNET (Virtual Network)
+        -> Firewall                 ==> Network Security Group (Rules: Protocol, Port, Source)
+        -> Storage (Hard Disk)      ==> Disk is 30 GB 
+
+    1  whoami
+    2  logout
+    3  ps -ef
+    4  sudo netstat -ntpl
+    5  sudo netstat
+    6  cat /etc/os-release
+    7  sudo ss -ntpl
+    8  sudo systemctl stop ssh
+    9  sudo ss -ntpl
+   10  sudo systemctl start ssh
+   11  sudo ss -ntpl
+   12*
+   13  sudo ss -ntpl
+   14  sudo apt install nginx
+   15  sudo ss -ntpl
+   16  git
+   17  ls /var/www/html/
+   18  cat /var/www/html/index.nginx-debian.html
+   19  git clone -b dev https://github.com/ravi2krishna/devops-2pm.git /var/www/html/
+   20  cat /var/www/html/index.nginx-debian.html
+   21  ls
+   22  sudo rm /var/www/html/index.nginx-debian.html
+   23  ls /var/www/html/
+   24  git clone -b dev https://github.com/ravi2krishna/devops-2pm.git /var/www/html/
+   25  sudo git clone -b dev https://github.com/ravi2krishna/devops-2pm.git /var/www/html/
+   26  ls /var/www/html/
+   27  ls /var/log/nginx/
+   28  sudo cat /var/log/nginx/access.log
+   29  ls /var/www/html/
+   30  history
