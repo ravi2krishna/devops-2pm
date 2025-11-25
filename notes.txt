@@ -187,3 +187,222 @@
    28  sudo cat /var/log/nginx/access.log
    29  ls /var/www/html/
    30  history
+
+25th Nov 2025
+=============
+
+    -> Git Operation Using CLI 
+
+        1  git clone https://github.com/ravi2krishna/devops-2pm.git
+        2  ls
+        3  cd devops-2pm
+        4  git branch
+        5  git checkout dev
+        6  git branch
+        7  git branch scripts
+        8  git branch
+        9  git checkout scripts
+        10  git branch
+        11  ls
+        12  git status
+        13  git config --global user.name devopsguy9
+        14  git config --global user.email ravikrishna.vetagiri@gmail.com
+        15  git status
+        16  vi script.sh
+        17  git status
+        18  ls
+        19  vi test.txt
+        20  git status
+        21  git add script.sh
+        22  git status
+        23  git restore --staged script.sh
+        24  git status
+        25  git restore --staged script.sh
+        26  git status
+        27  git commit -m "create script for web app deployment"
+        28  git add script.sh
+        29  git status
+        30  git commit -m "create script for web app deployment"
+        31  git status
+        32  git restore test.txt
+        33  git status
+        34  git push
+        35  git push --set-upstream origin scripts
+        36  cd
+        37  ls
+        38  rm -rf devops-2pm/
+        39  ls
+        40  git clone -b scripts https://github.com/ravi2krishna/devops-2pm.git
+        41  ls
+        42  cd devops-2pm/
+        43  ls
+        44  sh script.sh
+
+
+    -> Merge Conflicts 
+
+        -> A Merge Conflict happens when two branches have been modified 
+            with the changes and are subsequently merged.
+
+        -> Git doesn’t know which changes to keep, and thus needs 
+            human intervention(Manager) to resolve the conflict.
+
+        -> When Automatic merge fails, we need to do Manual Merges
+
+        45  history
+   46  git branhc
+   47  git branch
+   48  git branch -a
+   49  git branch b1
+   50  git branch b2
+   51  git branch
+   52  git checkout b1
+   53  git branch
+   54  ls
+   55  vi b1.txt
+   56  git status
+   57  git add b1.txt
+   58  git commit -m "b1"
+   59  ls
+   60  git checkout b2
+   61  ls
+   62  vi b2.txt
+   63  git status
+   64  git add b2.txt
+   65  git commit -m "b2:
+   66  git commit -m "b2"
+   67  ls
+   68  git checkout scripts
+   69  ls
+   70  git merge b1
+   71  ls
+   72  git merge b2
+   73  ls
+   74  cat test.txt
+   75  git branch
+   76  git branch b3
+   77  git branch b4
+   78  git branch
+   79  git checkout b3
+   80  ls
+   81  vi script.sh
+   82  git add script.sh
+   83  git checkout b3 done
+   84  git commit -m "b3 done"
+   85  git checkout b4
+   86  ls
+   87  vi script.sh
+   88  git add script.sh
+   89  git commit -m "b4 done"
+   90  git checkout scripts
+   91  cat script.sh
+   92  git merge b3
+   93  cat script.sh
+   94  git merge b4
+   95  cat script.sh
+   96  git status
+   97  vi script.sh
+   98  git add script.sh
+   99  git commit -m "Conflict resolved - noth aws & azure required"
+  100  cat script.sh
+  101  cd ~
+  102  ls
+  103  cd -
+  104  history
+
+  Rebase & Merge
+
+    -> Merge 
+
+        -> Maintains a clear history of how branches have diverged 
+        and converged. Easier to understand the history of the project.
+
+    -> Rebase 
+
+        ->  Creates a cleaner, linear project history.
+
+        105  cd ~
+        106  ls
+        107  git init proj_merge
+        108  ls
+        109  cd proj_merge/
+        110  ls
+        111  git branch
+        112  git branch -a
+        113  touch m1
+        114  ls
+        115  git status
+        116  git branch -m main
+        117  git status
+        118  git add m1
+        119  git commit -m "m1"
+        120  git branch
+        121  git status
+        122  git branch feature
+        123  git status
+        124  git checkout -b feature
+        125  git checkout feature
+        126  touch f1
+        127  git add f1
+        128  git commit -m "f1"
+        129  git checkout main
+        130  ls
+        131  touch m2
+        132  git add m2
+        133  git commit -m "m2"
+        134  ls
+        135  git merge feature
+        136  git log --oneline
+        137  cd ~
+        138  ls
+        139  git init proj_rebase
+        140  cd proj_rebase/
+        141  git status
+        142  git branch -m main
+        143  git status
+        144  touch m1
+        145  git add m1
+        146  git commit -m "m1"
+        147  git branch feature
+        148  git checkout feature
+        149  touch f1
+        150  git add f1
+        151  git commit -m "f1"
+        152  git checkout main
+        153  ls
+        154  touch m2
+        155  git add m2
+        156  git commit -m "m2"
+        157  git rebase feature
+        158  git log --oneline
+        159  git log --oneline --graph
+        160  cd ~/proj_merge/
+        161  git log --oneline --graph
+        162  history
+
+    -> Git Ignore 
+
+        -> .gitignore file content is made of list of 
+        files and directories to be excluded 
+
+        163  ls
+        164  vi .env
+        165  git status
+        166  vi .gitignore
+        167  git status
+        168  cat .env
+        169  ls *.class
+        170  touch file{1..10}.class
+        171  ls
+        172  git status
+        173  cat .gitignore
+        174  vi .gitignore
+        175  git status
+        176  vi .gitignore
+        177  git status
+        178  git add .gitignore
+        179  git commit -m "ignore entry added"
+        180  history
+        181  sudo vi /etc/nginx/nginx.conf
+        182  sudo vi /etc/nginx/sites-enabled/default
+        183  history
