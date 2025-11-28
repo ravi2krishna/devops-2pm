@@ -406,3 +406,64 @@
         181  sudo vi /etc/nginx/nginx.conf
         182  sudo vi /etc/nginx/sites-enabled/default
         183  history
+
+26th Nov 2025
+=============
+
+    -> Applications will have an architecture 
+
+    -> Three Tier Application Architecture is quite popular 
+    for building web Applications 
+
+    -> https://en.wikipedia.org/wiki/Programming_languages_used_in_most_popular_websites
+
+    -> Their development typically involves server-side coding, 
+        client-side coding and database technology.
+
+    -> Our Application Goes with following technologies 
+
+        -> Frontend : React 
+
+        -> Backend : Node 
+
+        -> Database : Postgres 
+
+    -> Application Flow 
+
+        -> User -> Frontend -> Backend -> Database 
+
+    -> Software Builds 
+
+        -> The term Build refers to a process by which 
+            source code is converted into binary code
+
+                -> Binary Code == Software Artifact 
+
+    -> Any Build You Want To Perform Requires Below Entities 
+
+        -> Developer Starts Writing Source Code 
+
+            -> Source Code is Human Readable Instructions 
+            -> Source Code is updated in GitHub (Repos)
+
+        -> Developer Starts Writing Metadata Files 
+
+            -> Metadata refers to Data about data 
+            
+            -> Metadata is information about the project 
+
+                -> Project Name 
+                -> Project Version 
+                -> Project Dependencies 
+                -> Project Test Suite 
+                -> etc 
+
+        -> NOTE: Source Code & Metadata is always part of repository 
+
+    
+    -> Build Artifacts will be produced after build is done 
+
+        -> Build process is handled by Developer in Laptops 
+
+        -> Build process is handled by DevOps Engineer in Server 
+
