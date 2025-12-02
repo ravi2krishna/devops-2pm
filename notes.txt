@@ -472,11 +472,13 @@
 
     -> Three Tier Application Architecture
 
-    -> Install postgres 
+    -> Install postgres (5432)
 
         -> sudo ss -ntpl
 
         -> Goto https://www.postgresql.org/download/linux/ubuntu/
+
+        -> sudo ss -ntpl
 
     -> Every Database has connection properties, which includes
             Address Of Database
@@ -525,10 +527,13 @@
             cat prisma/migrations/20221110085013_init/migration.sql
 
             # Old Session  - postgres user
+            sudo su - postgres
+            psql
             \dt
 
             # ubuntu user Session
             # Install Dependencies 
+            cd ~/lms/api
             npm install
             sudo npx prisma generate && sudo npx prisma db push
 
