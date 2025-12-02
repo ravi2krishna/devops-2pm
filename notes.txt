@@ -467,3 +467,158 @@
 
         -> Build process is handled by DevOps Engineer in Server 
 
+29th Nov 2025
+=============
+
+    -> Three Tier Application Architecture
+
+    -> Install postgres 
+
+        -> sudo ss -ntpl
+
+        -> Goto https://www.postgresql.org/download/linux/ubuntu/
+
+    -> Every Database has connection properties, which includes
+            Address Of Database
+            Database Port
+            Database Username
+            Database Password
+
+    -> Set Password - postgres 
+        Commands to set the password for postgres database
+            sudo su - postgres
+            psql
+            \password
+
+    -> Setup Backend / App Layer For LMS 
+        install Node.js version 16 on your system
+
+            # Open New Session with ubuntu user
+            whoami
+            node -v
+            npm -v
+            curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
+            sudo apt-get install -y nodejs
+            node -v
+            npm -v
+
+    -> Build Backend For LMS
+        
+        Clone the code and Change the directory to api, 
+        Then create a .env file in the api folder which is our backend source code,
+        where we would specify the database connection details.
+
+        # In ubuntu user Session
+            ls
+            git clone -b dev https://github.com/ravi2krishna/lms.git
+            ls
+            # Backend Source code
+            cd ~/lms/api
+            ls
+            vi .env
+
+            MODE=dev
+            PORT=8080
+            DATABASE_URL=postgresql://postgres:your-password@localhost:5432/postgres
+
+            # ubuntu user Session
+            cat prisma/migrations/20221110085013_init/migration.sql
+
+            # Old Session  - postgres user
+            \dt
+
+            # ubuntu user Session
+            # Install Dependencies 
+            npm install
+            sudo npx prisma generate && sudo npx prisma db push
+
+            # Old Session  - postgres user - Verify
+            \dt
+
+            # ubuntu user Session
+            ls build
+            # Build LMS API
+            npm run build
+            ls build
+
+            # ubuntu user Session
+            # Run/Start LMS API
+            node build/index.js
+
+            # Open New Session Again - ubuntu user - To Verify Port
+            sudo ss -ntpl
+
+            # New Session - ubuntu user
+            ctrl + c
+            pm2
+            sudo npm install -g pm2
+            pm2 start build/index.js
+            sudo ss -ntpl
+
+            Locally verify 
+            curl http://localhost:8080/api
+
+
+            {"message":"success","mode":"dev"}
+
+        -> Verify with Browse - http://public-ip:8080/api
+    
+        -> Build Frontend For LMS
+            
+            -> Change the directory to webapp, 
+            Then create a .env file in the webapp folder which is our frontend 
+            source code, where we would specify the backend connection details.
+
+            # Session - ubuntu user
+            cd ~/lms/webapp
+            ls
+            vi .env
+
+            VITE_API_URL=http://public-ip:8080/api
+
+            -> Run the below commands to build the Application, 
+            which will create dist folder, in which our application will 
+                be made available
+
+            npm install
+            ls dist
+            npm run build
+            ls dist
+
+        -> Setup Nginx Web Server
+
+            sudo ss -ntpl
+            sudo apt -y install nginx
+            sudo ss -ntpl
+            ls /var/www/html
+            cat /var/www/html/index.nginx-debian.html
+            sudo rm -rf /var/www/html/*
+            sudo mkdir -p /var/www/html/
+            ls /var/www/html
+            sudo cp -r ~/lms/webapp/dist/* /var/www/html
+
+        -> Troubleshoot / Test 
+
+            # Database
+            sudo ss -ntpl
+            sudo systemctl stop postgresql
+            sudo systemctl start postgresql
+            sudo ss -ntpl
+
+            # API
+            pm2 status
+            pm2 stop 0
+            sudo ss -ntpl
+            Verify with Browse - http://public-ip:8080/api
+            pm2 start 0
+            sudo ss -ntpl
+            Verify with Browse - http://public-ip:8080/api
+
+            # Frontend
+            sudo ss -ntpl
+            sudo systemctl stop nginx
+            sudo ss -ntpl
+            sudo systemctl start nginx
+            sudo ss -ntpl
+
+        -> IMPORTANT Terminate the Server Once LAB is Done
