@@ -627,3 +627,99 @@
             sudo ss -ntpl
 
         -> IMPORTANT Terminate the Server Once LAB is Done
+
+3rd Dec 2025
+=============
+
+    -> DNS 
+
+        -> Domain Name Mapping 
+
+        -> SSL Certificate Generation
+
+            -> https://certbot.eff.org/instructions?ws=nginx&os=snap
+
+        -> In Web Server i.e Nginx
+
+            -> sudo vi /etc/nginx/sites-enabled/default 
+
+                -> Update 
+                    
+                    server_name lms.luckycloudops.xyz;
+
+            -> sudo nginx -t
+
+            -> sudo systemctl restart nginx 
+
+        -> To Generate FREE SSL visit below
+
+            -> https://certbot.eff.org/instructions?ws=nginx&os=snap
+
+            -> sudo snap install --classic certbot
+
+            -> sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+            -> sudo certbot --nginx
+
+    -> DevOps is a set of PRACTICES that works towards the 
+        AUTOMATION and INTEGRATION of the processes between 
+        Software Development (Dev) and IT (Ops) teams, 
+        so that organizations can BUILD, TEST, and DEPLOY softwares/applications 
+        FASTER and more RELIABLE
+
+    -> Docker == FASTER
+
+
+    -> Whole LMS Application deployment took 1 Hour ( Azure Ubuntu VM ) - Diff setup
+
+    -> Whole LMS Application deployment took 1 Hour ( Azure Redhat VM ) - Diff setup
+
+    -> Whole LMS Application deployment took 1 Hour ( Azure SUSE VM ) - Diff setup
+
+
+    -> LMS App Setup, i want this to be universal, thats what docker does 
+
+    -> Docker Helps Build Portable Environments (1 Hour) -> 2 mins 
+
+    -> Whole LMS Application deployment took 1 Hour ( Azure Ubuntu VM ) - Diff setup
+
+    -> Now Using Docker Next Time Onwards, My deployment takes hardly 5 mins 
+
+
+    -> Containerization 
+
+        -> Containerisation is one of the practices in devops, which provides 
+
+            -> Lightweight and efficient way of running applications 
+            
+            -> Promotes faster deployments and portability for applications
+
+        -> Applications will be 
+
+            -> Monolithic Architecture
+
+                -> Monolith means Large Stone 
+
+                -> Monolithic Architecture is software design pattern, where the entire
+                    application is built as single & indivisible unit 
+
+            -> Microservices Architecture
+
+                -> Microservices Architecture is a software development approach that involves 
+                building small, independent services that work together 
+                to create a larger application.
+
+            -> Before Containerisation we got on-prem or cloud(virtualization)
+
+            -> If Applications are small / micro, why do you need 
+                heavy weight VM's ?? 
+
+                -> Answer for above problem is Containerisation
+
+    -> Docker Architecture / Components 
+
+        -> Docker CLI
+        -> Docker Daemon 
+        -> Docker Registry (ACR / ECR / etc)
+        -> Docker Images
+        -> Docker Container 
