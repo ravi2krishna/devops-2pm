@@ -688,7 +688,7 @@
 
     -> Containerization 
 
-        -> Containerisation is one of the practices in devops, which provides 
+        -> Containerization is one of the practices in devops, which provides 
 
             -> Lightweight and efficient way of running applications 
             
@@ -709,12 +709,12 @@
                 building small, independent services that work together 
                 to create a larger application.
 
-            -> Before Containerisation we got on-prem or cloud(virtualization)
+            -> Before Containerization we got on-prem or cloud(virtualization)
 
             -> If Applications are small / micro, why do you need 
                 heavy weight VM's ?? 
 
-                -> Answer for above problem is Containerisation
+                -> Answer for above problem is Containerization
 
     -> Docker Architecture / Components 
 
@@ -723,3 +723,121 @@
         -> Docker Registry (ACR / ECR / etc)
         -> Docker Images
         -> Docker Container 
+
+4th Dec 2025
+=============
+
+    -> Docker Setup 
+
+        -> In Azure B2S is the size to select. 
+
+        -> Add Following Rules in Network Security Groups 
+
+            -> 22, 80, 443
+            -> 32768 - 61000 (docker pre defined range of ephemeral ports)
+            -> 8080 - 9090 (user defined range of ephemeral ports)
+
+            1  docker
+            2  docker info
+            3  sudo apt -V -s install docker.io
+            4  ls
+            5  curl -fsSL https://get.docker.com -o install-docker.sh
+            6  ls
+            7  chmod u+x install-docker.sh
+            8  ./install-docker.sh
+            9  docker info
+            10  sudo docker info
+            11  docker image ls
+            12  docker container ls
+            13  sudo grep docker /etc/group
+            14  sudo usermod -aG docker ubuntu
+            15  sudo grep docker /etc/group
+
+            -> logout and re-login for changes to reflect 
+
+        
+    -> To Create Container We need Docker Images 
+
+        -> Docker Images are present in Docker Registry 
+
+            -> Docker Registry is hub.docker.com 
+    
+    -> Create Container 
+
+        -> docker container run --name name_container <image> 
+
+        -> docker container run --name c1 hello-world 
+
+    -> Container Modes 
+
+        -> Interactive Mode (debugging / testing mode)
+
+            -> Interactive Mode: Containers run in the foreground, and their output is printed to the terminal.
+                This mode is useful for debugging and development. Another name is Foreground Mode. 
+
+                -> option is -it
+
+        -> Detached Mode (production mode)
+
+            -> Detached Mode: Containers run in the background, and their output is not printed to the terminal. 
+                This mode is commonly used in production environments. Another name is Background Mode. 
+
+                -> option is -dt
+        
+
+        -> Foreground Mode
+            Create Ubuntu container in Foreground Mode:
+            # Go with Two Sessions 
+            docker container run --help
+            docker container run -it --name c1 ubuntu:22.04
+
+
+        -> Detached Mode
+            Create Ubuntu container in Detached Mode:
+            docker container run -dt --name c2 ubuntu:22.04
+
+        -> Docker exec
+
+            docker container run -dt --name c2 ubuntu:22.04
+            docker container exec c2 uname
+            docker container exec c2 ps -ef
+            docker container exec c2 git
+            docker container exec c2 ss
+            docker container exec c2 ssh
+
+            docker container stop CONTAINER_NAME
+            docker container rm CONTAINER_NAME
+            docker container start CONTAINER_NAME
+            docker container rm -f CONTAINER_NAME
+
+    -> Setup Web Server Container - 1
+
+        docker container run -dt --name web ubuntu:22.04
+        docker container exec -it web bash
+
+        # Install ss command  
+        ss -ntpl
+        apt update -y
+        apt install iproute2 -y
+        ss -ntpl
+        ps -ef
+
+
+        # Update and Install Nginx
+        apt install nginx -y
+
+        # Start the Nginx service
+        service nginx start
+        ss -ntpl
+        ps -ef
+
+        # Access Nginx Web Server
+        apt install curl -y
+        curl localhost
+
+    -> docker container inspect <container-name>
+
+    -> docker stats
+    
+
+
