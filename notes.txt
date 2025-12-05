@@ -840,4 +840,168 @@
     -> docker stats
     
 
+5th Dec 2025
+=============
 
+    -> Containers are non-persistent 
+
+    -> Say we removed c1 from last class 
+
+    -> Now again we need to start from step - 1
+
+        -> again install nginx      
+        -> again start nginx 
+
+    
+    -> Setup Web Server Container - 2
+
+        -> While working with docker 
+
+            -> Don't re-invent wheel again 
+
+        -> docker container run -dt --name c2 nginx
+
+        -> Trying to access container outside the host will not work
+
+    
+    -> Docker Networking 
+
+        -> Docker networking enables communication
+
+            -> between containers and the external network
+
+            -> between containers and the host 
+
+            -> in between containers also 
+
+
+    -> Network Drivers
+        
+        -> Docker supports various network drivers, each designed for specific use case
+            
+            -> Bridge
+            -> Host
+            -> None
+
+        -> Host: This driver removes network isolation between 
+            the container and the Docker host, 
+            allowing them to share the host’s networking namespace.
+
+            -> docker network ls
+            
+            -> NOTE: By default all containers are created in Bridge network
+
+            -> docker network inspect bridge
+
+            -> docker network inspect host 
+
+                -> no containers in host network
+
+            -> Let's create container in host network Now
+
+                -> docker container run -dt --name c3 --network=host nginx
+
+                -> docker container ls -a
+
+                -> docker network inspect host 
+
+                -> docker container inspect c3
+
+                    -> no ip for container c3, as it share network with host 
+
+                    -> curl localhost
+
+                    -> curl private-ip 
+
+                    -> browse public-ip 
+
+        -> NOTE: Challenge with host network is only one port can be used by one app 
+
+            -> docker container run -dt --name c4 --network=host nginx
+
+                -> Exited
+
+            -> docker container run -dt --name c5 --network=host nginx
+
+                -> Exited - 80 failed (98: Address already in use)
+
+                -> docker container logs c4
+
+    
+    -> None Network
+
+        -> This mode will not configure any IP for the container and 
+            doesn’t have any access to the external network 
+            as well as for other containers. 
+            It does have the loopback address and can be used for running batch jobs.
+
+           -> docker container exec c3 apt update -y (host network)
+
+           -> docker container exec c1 apt update -y (bridge network)
+
+           -> docker container run -dt --name c6 --network=none nginx
+
+           -> docker container ls -a
+
+           -> docker container inspect c6
+
+           -> docker container exec c6 apt update -y (none network)
+
+    -> Bridge Network
+
+        -> The default bridge network in Docker is a pre-defined network named bridge,
+         which is automatically created when you install Docker. 
+         It is the default network for containers if no other network is specified.
+
+        -> When you start a container without specifying a network, 
+            it connects to the bridge network by default.
+
+        -> Containers on the bridge network can communicate with each other using IP addresses 
+
+            -> docker container inspect c2
+                -> 172.17.0.3
+            -> docker container exec -it c1 bash
+            -> apt update -y && apt install curl -y
+            -> curl 172.17.0.3 
+
+        -> Bridge network supports network forwarding i.e port forwarding 
+
+        -> Above activity makes a port(EXPOSED PORT) inside a container 
+            accessible to ports on the Docker host for external access. 
+            Port mapping is accomplished by binding a port on the host 
+            to a port in the container, effectively forwarding traffic 
+            from the host to the container. 
+            This is a necessary step for any service running 
+            inside a container that needs to be accessible from 
+            external machines or networks.
+
+        -> -p : docker user defined ports ( custom range 8080 to 9090 )
+
+            -> docker container run -dt --name app1 -p 8080:80 nginx
+
+            -> docker container run -dt --name app2 -p 8085:80 nginx
+
+            -> docker container run -dt --name app3 -p 9090:80 nginx
+        
+            -> docker container ls -a
+
+        -> -P : docker ephemeral ports ( predefined range 32768 to 61000 )
+
+            -> docker container run -dt --name app4 -P nginx
+            -> docker container run -dt --name app5 -P nginx
+
+
+        -> Custom network for isolation 
+
+            -> docker network ls
+            -> docker network create --driver bridge --subnet 10.0.0.0/16 --ip-range 10.0.1.0/24 --gateway 10.0.0.1 cbn 
+            -> docker network ls
+
+            -> docker container run -dt --name cbn-1 --network=cbn ubuntu
+
+            -> docker container ls -a
+
+            -> docker container inspect cbn-1
+                -> 10.0.1.0
+            -> docker container exec -it c1 bash
+            -> curl 10.0.1.0 
