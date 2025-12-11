@@ -1176,6 +1176,246 @@
         -> React + Nodejs + Postgres 
 
     
+10th Dec 2025
+=============
 
-                
+    -> Dockerize Three Tier Application
+
+        -> React + Nodejs + Postgres 
+
+    -> git clone -b dev https://github.com/ravi2krishna/lms.git
+
+    -> sudo ss -ntpl
+
+    -> Postgres Database - 5432
+
+        -> docker container run -dt --name lms-db postgres 
+
+        -> docker container ls -a
+
+        -> docker container logs lms-db
+
+        -> docker container rm -f lms-db
+
+        -> docker container run -dt --name lms-db -e POSTGRES_PASSWORD=Login@123 postgres
+
+        -> ls
+            # Backend Source code
+            cd ~/lms/api
+            ls
+            vi .env
+
+            MODE=dev
+            PORT=8080
+            DATABASE_URL=postgresql://postgres:your-password@db-container-ip:5432/postgres
+
+            # ubuntu user Session
+            cat prisma/migrations/20221110085013_init/migration.sql
+
+            -> docker build -t ravi2krishna/lms-be .
+            -> docker container run -dt --name t1 ravi2krishna/lms-be
+            -> docker container exec t1 node -v
+            -> docker container exec t1 npm -v
+            -> docker container exec t1 pwd
+
+            -> cat Dockerfile
+
+                # Base Image
+                FROM node:16
+
+                # RUN - runs command
+                RUN mkdir /backend
+
+                # WORKDIR - set working directroy
+                WORKDIR /backend
+
+            -> docker build -t ravi2krishna/lms-be .
+
+            -> docker container run -dt --name t2 ravi2krishna/lms-be
+
+            -> docker container exec t2 pwd
+
+            -> docker container exec t1 pwd
+
+            -> docker container exec t2 ls
+
+            -> cat Dockerfile
+
+                # Base Image
+                FROM node:16
+
+                # RUN - runs command
+                RUN mkdir /backend
+
+                # WORKDIR - set working directroy
+                WORKDIR /backend
+
+                # COPY 
+                COPY . /backend
+
+            -> docker build -t ravi2krishna/lms-be .
+
+            -> docker container run -dt --name t3 ravi2krishna/lms-be
+
+            -> docker container exec t2 ls
+
+            -> docker container exec t3 ls
+
+            -> docker container exec t3 cat .env
+
+            -> cat Dockerfile 
+
+                # Base Image
+                FROM node:16
+
+                # RUN - runs command
+                RUN mkdir /backend
+
+                # WORKDIR - set working directroy
+                WORKDIR /backend
+
+                # COPY - copy code
+                COPY . /backend
+
+                # Run Build Related Commands
+                RUN npm install
+                RUN npx prisma generate
+                RUN npx prisma db push
+                RUN npm run build
+
+            -> docker build -t ravi2krishna/lms-be .
+
+            -> docker container run -dt --name t4 ravi2krishna/lms-be
+
+            -> docker container exec t4 ls build
+
+            -> cat Dockerfile 
+
+                # Base Image
+                FROM node:16
+
+                # RUN - runs command
+                RUN mkdir /backend
+
+                # WORKDIR - set working directroy
+                WORKDIR /backend
+
+                # COPY - copy code
+                COPY . /backend
+
+                # Run Build Related Commands
+                RUN npm install
+                RUN npx prisma generate
+                RUN npx prisma db push
+                RUN npm run build
+
+                # Run Deployment Related Commands
+                # RUN node build/index.js
+                CMD ["node","build/index.js"]
+
+            -> docker build -t ravi2krishna/lms-be .
+
+            -> docker container run -dt --name t5 ravi2krishna/lms-be
+
+            -> docker container inspect t5
+
+            -> curl 172.17.0.7:8080/api
+
+            {"message":"success","mode":"dev"}
+
+            -> docker container run -dt --name lms-be -p 8080:8080 ravi2krishna/lms-be
+
+        -> Verify with Browse - http://public-ip:8080/api
+    
+        -> ENTRYPOINT vs CMD 
+
+            -> ENTRYPOINT
+
+                -> Defines the main executable or command
+
+                -> Difficult to override
+
+                -> NOTE: Best used when you want the container to behave like fixed executable 
+
+            -> CMD 
+
+                -> Provides default arguments to the ENTRYPOINT instruction or, 
+                    if no ENTRYPOINT is defined, serves as the default command to execute. 
+
+                -> Easy to override
+
+                -> NOTE: Best used when you want the container to behave with variable executable 
+
+                    CMD["node","build/index.js"]
+
+                    CMD["node","build/app.js"]
+
+        
+        -> Build Frontend For LMS
+            
+            cd ~/lms/webapp
+            ls
+            vi .env
+
+            VITE_API_URL=http://public-ip:8080/api
+
+
+        -> cat Dockerfile 
+
+            # Base Image
+            FROM node:16
+
+            # RUN - runs command
+            RUN mkdir /frontend
+
+            # WORKDIR - set working directroy
+            WORKDIR /frontend
+
+            # COPY - copy code
+            COPY . /frontend
+
+            # Run Build Related Commands
+            RUN npm install
+            RUN npm run build
+
+        -> docker build -t ravi2krishna/lms-fe .
+
+        -> docker container run -dt --name t8 ravi2krishna/lms-fe
+
+        -> docker container exec t8 ls dist
+
+        -> cat Dockerfile 
+
+            # Base Image
+            FROM node:16
+
+            # RUN - runs command
+            RUN mkdir /frontend
+
+            # WORKDIR - set working directroy
+            WORKDIR /frontend
+
+            # COPY - copy code
+            COPY . /frontend
+
+            # Run Build Related Commands
+            RUN npm install
+            RUN npm run build
+
+            # Run Deployment On Nginx
+            FROM nginx
+
+            COPY --from=build /frontend/dist /usr/share/nginx/html
+
+        -> docker build -t ravi2krishna/lms-fe .
+
+        -> docker container run -dt --name t9 ravi2krishna/lms-fe
+
+        -> docker container exec t9 ls /usr/share/nginx/html
+
+        -> docker container run -dt --name lms-fe -p 80:80 ravi2krishna/lms-fe
+
+
+
+
 
