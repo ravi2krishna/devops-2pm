@@ -1416,6 +1416,178 @@
         -> docker container run -dt --name lms-fe -p 80:80 ravi2krishna/lms-fe
 
 
+11th Dec 2025
+=============
+
+    -> High Availability
+
+        -> High Availability (HA) means designing IT systems to operate continuously 
+            with minimal or zero downtime, ensuring they remain accessible and reliable 
+            despite hardware/software failures by eliminating single points of failure 
+            through redundancy, failover, and replication, often 
+            targeting standards like "five nines" (99.999% uptime)
+        
+        -> High availability in AWS/AZURE ensures that applications and services are 
+            continuously accessible and operational, even in the event of component failures or disruptions.
+
+        -> High availability is achieved by deploying resources across multiple availability zones (AZs)
 
 
+    -> Kubernetes 
+
+        -> Production Grade Container Orchestration 
+
+        -> Production-grade container orchestration refers to the capability of 
+            running containerized applications in a production environment effectively and reliably.
+
+        -> Kubernetes builds upon 15 years of experience of "running production workloads at Google"
+
+        -> Kubernetes was originally designed by Google, and is now maintained by the 
+            Cloud Native Computing Foundation (CNCF) 
+
+    -> Kubernetes Components
+
+    -> Master Components
+
+        -> API Server: 
+            
+            -> The API server acts as the brain of the Kubernetes cluster. 
+            It provides a central point of communication for all the other components. 
+            When you want to create, update, or delete something in the cluster, 
+            you communicate with the API server.
+
+        -> etcd: 
+            
+            -> Think of etcd as the memory of the Kubernetes cluster. 
+            It stores the configuration data and the state of the entire cluster. 
+            When any component wants to know the current state of the cluster, it asks etcd.
+
+        -> Scheduler: 
+            
+            -> The Scheduler is like a matchmaker. 
+            Its job is to decide which worker node should run each new app container/pod. 
+            It considers factors like available resources, to make sure app containers/pods 
+            are placed on suitable worker nodes.
+
+        -> Controller: 
+
+            -> The Controller Manager is like the supervisor of the cluster. 
+            It continuously observes the state of the cluster through the API server. 
+            If it detects that the actual state of the cluster doesn't match the desired state 
+            (for example, if an app container/pod goes down), 
+            it takes action to make the cluster converge to the desired state.
+    
+    -> Worker Components
+
+        -> Kubelet: 
+
+            -> The Kubelet is like the worker's Agent Software.  
+            It runs on every worker node and is responsible for making sure 
+            that the containers/pods assigned to its node are running and healthy. 
+            It takes care of starting, stopping, and monitoring containers within the pods. 
+            It updates the status back to Master.
+
+        -> Docker: 
+
+            -> The container runtime is the software that runs and manages containers.  
+            The container runtime is responsible for pulling container images from a registry, 
+            creating containers, and managing their life cycles.
+
+        -> Kube Proxy: 
+
+            -> The Kube Proxy is like the traffic cop of the worker nodes. 
+            It manages the network connections and routing between the containers/pods and services 
+            within the cluster. It ensures that network traffic is correctly directed to the right destination.
+    
+    -> Workstation Component
+
+        -> Kubectl: 
+
+            -> API server is the main entrypoint to the k8s cluster, 
+            so if you want to do anything in Kubernetes(k8s) cluster, 
+            you first have to talk to the API server and the way to talk is through 
+            a client software called KUBECTL, a CLI tool. 
+
+    -> Setup Kubernetes (k8s)
+
+    -> Minikube - Mini Kubernetes (Cost Saving - Learning)
+
+    -> EKS - AKS - GKE (Production Setup - Highly Available Hardware)
+
+
+    -> Minikube
+
+        -> Minikube is a single node cluster, 
+        where the master processes and worker processes and workstation all run on one node (one server).
+
+        -> Minikube is primarily used for local development and learning purposes. 
+
+        -> NOTE: Minikube is great for local development, 
+        but it is not designed for running production workloads at scale. 
+
+        -> For production environments, you would typically use managed Kubernetes services provided by 
+        cloud providers i.e AWS EKS or AZURE AKS or GOOGLE GKE etc
+
+        -> Minikube Setup 
+
+            -> Guide - https://minikube.sigs.k8s.io/docs/start/
+
+            -> In Azure B2S is the size to select, allow ports 22, 80 and [30000-32767] Traffic. 
+
+            -> docker
+            -> wget -O get-docker.sh https://get.docker.com && sh get-docker.sh
+            -> sudo usermod -aG docker ubuntu
+            -> logout
+            -> docker
+            -> minikube
+            -> curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+            -> sudo install minikube-linux-amd64 /usr/local/bin/minikube
+            -> minikube
+            -> minikube status
+            -> minikube start 
+            -> minikube status
+            -> kubectl
+            -> curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+            -> chmod u+x kubectl 
+            -> sudo mv kubectl /usr/local/bin/kubectl
+            -> kubectl
+
+    -> Kubernetes Objects 
+
+        -> By creating an object, you’re effectively telling the Kubernetes system 
+        what applications to run in the cluster
+
+        -> Few examples of kubernetes objects include pods, replicasets, deployments, services etc. 
+
+        -> To work with Kubernetes objects, whether to create, modify or delete them, 
+        you’ll need to use a command-line tool called KUBECTL. 
+
+        -> https://kubernetes.io/docs/concepts/overview/working-with-objects/
+
+        -> A Kubernetes object is a "record of intent"--once you create the object, 
+        the Kubernetes system will constantly work to ensure that the object exists. 
+        By creating an object, you're effectively telling the Kubernetes system 
+        what you want your cluster's workload to look like; this is your cluster's desired state.
+
+        -> Object spec and status
+
+        -> Object spec
+
+            -> Almost every Kubernetes object includes two nested object fields 
+            that govern the object's configuration: the object spec and the object status. 
+            For objects that have a spec, you have to set this when you create the object, 
+            providing a description of the characteristics you want the resource to have: its desired state.
+
+        -> Object status
+
+            -> The status describes the current state of the object, 
+            supplied and updated by the Kubernetes system and its components. 
+            The Kubernetes control plane continually and actively manages 
+            every object's actual state to match the desired state you supplied.
+
+        -> Manage Objects 
+
+            -> Commands - Imperative Commands 
+
+            -> Code - Declarative Configuration Files / Manifests (YAML) (Recommend)
 
