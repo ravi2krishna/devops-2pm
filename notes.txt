@@ -1591,3 +1591,97 @@
 
             -> Code - Declarative Configuration Files / Manifests (YAML) (Recommend)
 
+
+12th Dec 2025
+=============
+
+    -> kubectl get pods
+
+    -> pods are objects 
+
+    -> A Pod represents a unit of deployment: A single instance of an application in Kubernetes. 
+
+    -> A Pod can contain one or more containers 
+
+    -> Pod Using Commands 
+
+        -> kubectl run name-of-pod --image <image> --port=port_num
+
+        -> kubectl run nginx-pod --image nginx --port=80
+
+        -> kubectl get pods
+
+        -> kubectl describe pod nginx-pod
+
+        -> kubectl exec nginx-pod -- cat /usr/share/nginx/html/index.html 
+
+        -> kubectl delete pod nginx-pod
+
+        -> kubectl get pods
+
+    -> Pod Using Code 
+
+        -> Code - YAML     
+
+        -> YAML: A human-readable data serialization language. 
+            It is commonly used for configuration files and in applications 
+            where data is being stored or transmitted.
+        
+        -> YAML focuses on User Friendliness & Easy Readability 
+
+        -> Serialization language
+
+            -> XML 
+
+                -> JSON 
+
+                    -> YAML(Kubernetes)
+
+        -> YAML is used to store information about different "k8s objects" 
+
+        -> Using YAML we represent
+
+            -> Simple key values 
+
+            -> Dictionaries i.e set of key values 
+
+            -> Lists i.e multiple items 
+        
+        -> Comments are represented using # 
+
+            -> # line will be ignored 
+
+        -> In k8s any yaml file has 4 top level items 
+
+            apiVersion:
+            kind:
+            metadata:
+            spec:
+
+        -> k8s scripts can be executed using 
+    
+            -> kubectl apply -f pod.yaml 
+            -> kubectl get pods 
+            -> kubectl exec nginx-pod -- cat /usr/share/nginx/html/index.html 
+
+    -> Pods are ephemeral in nature (temporary)   
+
+    -> Pods do not "heal" or repair themselves.
+
+    -> ReplicaSets
+
+        -> Replica Set is often used to "guarantee the availability" 
+            of a specified number of pods
+
+        -> If our application crashes(any pod dies), replicaset will 
+            recreate the pod to ensure the configured pod is always running.
+
+        -> Replicaset helps you achieve High Availability 
+
+        -> Replicaset Issues 
+
+            -> Replicasets don't allow UPDATES 
+
+        
+
+

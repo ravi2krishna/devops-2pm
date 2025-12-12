@@ -1,0 +1,26 @@
+# This is Comment 
+
+# We can use .yaml or .yml as kubernetes files 
+
+# Simple key values 
+key: value 
+
+key1: value1 
+key2: value2
+key3: value3
+
+name: ravi 
+city: hyderabad 
+zip: 500081
+
+# Dictionaries i.e set of key values 
+person:
+  name: ravi 
+  city: hyderabad 
+  zip: 500081
+
+# Lists i.e multiple items 
+courses:
+- aws
+- azure
+- devops
