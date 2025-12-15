@@ -1682,6 +1682,77 @@
 
             -> Replicasets don't allow UPDATES 
 
+
+15th Dec 2025
+=============
+
+    -> Deployment Object
+
+        -> A deployment provides updates for "pods" and "replica sets"
+
+        -> Just update kind: Deployment
+
+
+    -> Service Object
+
+        -> A service is an object that acts as an endpoint, which you use to access the pods.
+
+    -> There are different types of kubernetes services present, 
+        to expose an application running on pods
+            -> NodePort         -> access over internet
+            -> Cluster IP       -> access within intranet (private communication)
+            -> LoadBalancer     -> access over internet provided by cloud
+            -> ExternalName     -> access over internet provided as DNS 
+
+    -> NodePort Service
+
+        -> You can contact the NodePort Service, from outside (www) the cluster, 
+            by requesting <NodeIP>:<NodePort>
+
+            -> This is similar to docker using -P (32768 - 61000)
+
+            -> In k8s we use (30000 - 32767)
+
+    -> Labels & Selectors
+
+        -> Labels: Labels are key/value pairs that are attached to objects.  
+
+        -> Selectors: Using a label selector, we can identify a set of objects.
+
+        -> Why No IP Address for Accessing 
+
+            -> If you use a ReplicaSet/Deployment to run your app, 
+            that ReplicaSet can create and destroy Pods dynamically. 
+            From one moment to the next, you don't know how many of 
+            those Pods are working and healthy; you might not even know 
+            what those healthy Pods are named and ip will be dynamic too.
+
+            -> cd ~/devops-2pm/k8s
+            -> kubectl apply -f pod.yaml
+            -> kubectl describe pod/nginx-pod
+                -> 10.244.0.7
+            -> kubectl delete pod nginx-pod
+            -> kubectl apply -f pod.yaml
+            -> kubectl describe pod/nginx-pod
+            -> kubectl delete pod nginx-pod
+    
+    -> NodePort Service
+
+        -> https://kubernetes.io/docs/concepts/services-networking/service/
         
+        -> You can contact the NodePort Service, from outside (www) the cluster, 
+            by requesting <NodeIP>:<NodePort>
 
+        -> Similar to what we did in docker with -P (32768 - 61000)
 
+        -> Node port must be in the range of 30000–32767.
+
+        -> NOTE: Whatever the label we have in the pod definition, 
+                    the same should be in "matchLabels" section
+
+        -> kubectl port-forward --address 0.0.0.0 service/nginx-svc 31224:80
+        -> kubectl port-forward --address 0.0.0.0 service/nginx-svc 31224:80
+
+        -> kubectl get svc
+
+        -> kubectl delete svc nginx-svc
