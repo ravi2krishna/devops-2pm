@@ -1756,3 +1756,48 @@
         -> kubectl get svc
 
         -> kubectl delete svc nginx-svc
+
+
+16th Dec 2025
+=============
+
+    -> HELM Charts 
+
+        -> Helm is a package manager for Kubernetes
+
+        -> apt is a package manager for ubuntu 
+
+        -> npm is a package manager for javascript  
+
+    -> Helm uses a packaging format called "Charts"
+
+    -> Structure Of helm charts 
+
+        -> Chart.yaml: This file contains metadata about the Chart, 
+            including the name, version, description, and maintainer information.
+
+        -> Templates: Helm Charts include a templates directory, 
+            which contains Kubernetes YAML templates with placeholders 
+            for values defined in "values.yaml" 
+            Helm replaces these placeholders with the 
+            actual values when rendering the templates.
+
+        -> Values.yaml: This file holds customizable configuration values for the Chart. 
+
+    -> Helm CLI
+        
+        -> The Helm command-line tool allows you to interact with Helm Charts. 
+        You can use commands like helm install, helm uninstall, helm upgrade, 
+        and helm delete to manage Helm releases.
+
+    -> Install Helm 
+
+        -> helm
+        -> curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+        -> chmod u+x get_helm.sh
+        -> ./get_helm.sh
+        -> helm 
+
+    -> helm list -a
+    -> helm install <chart-name> <chart-location> -f values-nginx.yml
+    -> helm uninstall chart-name 

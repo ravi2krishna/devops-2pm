@@ -1,0 +1,16 @@
+# Deployment
+deployment:
+  name: login
+  replicas: 1
+  label: login
+  container_name: login
+  image: ravi2krishna/login-2514
+  port: 80
+
+# Service
+service:
+  name: login-svc
+  protocl: http
+  port: 80
+  label: login
+  type: NodePort
