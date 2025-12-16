@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: login
+spec:
+  replicas: 1 # always one copy of below pod template should run 
+  selector:
+    matchLabels:
+      app: login
+  template: # pod template
+    metadata:
+      labels:
+        app: login
+    spec:
+      containers:
+      - name: login
+        image: ravi2krishna/login-2514
+        ports:
+        - containerPort: 80

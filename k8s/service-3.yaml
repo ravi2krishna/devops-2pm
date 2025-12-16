@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ecomm-svc
+spec:
+  ports:
+    - name: http
+      port: 80
+  selector:
+    app: ecomm
+  type: NodePort
