@@ -1801,3 +1801,37 @@
     -> helm list -a
     -> helm install <chart-name> <chart-location> -f values-nginx.yml
     -> helm uninstall chart-name 
+
+
+17th Dec 2025
+=============
+
+    -> Persistent Volumes - PV 
+
+        -> A PersistentVolume (PV) is a piece of "storage" in the cluster
+
+        -> PersistentVolume represents storage independent of pods 
+
+    -> PersistentVolumeClaim (PVC)
+
+        -> A PersistentVolumeClaim is a request for storage by a pod
+    
+    -> Storage Class
+
+        -> A StorageClass in Kubernetes defines the type of stoarge to use 
+
+    -> Pod -> Volume Claim -> Persitent Volume -> Physical Storage 
+
+    -> https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
+
+    
+    -> Namespaces 
+
+        -> In Kubernetes, namespaces provide a mechanism for "isolating" groups of resources 
+            within the cluster
+
+        -> Like branches in git 
+
+        -> https://kubernetes.io/docs/tasks/administer-cluster/namespaces/#creating-a-new-namespace
+
+        
