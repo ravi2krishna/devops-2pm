@@ -1835,3 +1835,78 @@
         -> https://kubernetes.io/docs/tasks/administer-cluster/namespaces/#creating-a-new-namespace
 
         
+18th Dec 2025
+=============
+
+    -> Auto Scaling 
+
+        -> We can scale workload depending on the demand of resources 
+
+        -> When you scale a workload, you can either increase or decrease the number of replicas
+
+        -> There are "manual" and "automatic" ways to scale your workloads, 
+            depending on your use case
+
+        -> Manual Scaling
+
+            -> Just change number of replicas 
+
+    -> Scaling workloads automatically 
+
+        -> In Kubernetes, you can automatically scale a workload using a 
+            "HorizontalPodAutoscaler" (HPA)
+
+        -> A HorizontalPodAutoscaler (HPA for short) automatically updates a workload 
+        resource (such as a Deployment), with the aim of automatically scaling the 
+        workload to match demand
+
+        -> https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
+
+        -> Metrics Server 
+
+            -> You need to use a cluster that has a Metrics Server deployed and configured. 
+            The Kubernetes Metrics Server collects resource metrics from the kubelets in your cluster, 
+            and exposes those metrics through the Kubernetes API, 
+            using an APIService to add new kinds of resource that represent metric readings.
+
+        -> kubectl get pods -n kube-system
+        -> minikube addons enable metrics-server
+        -> kubectl get pods -n kube-system
+
+        
+        requests:
+            cpu: 200m
+
+        -> Here 200m is 200 milli cpu, the container asks 200m cpu to be reserved for it 
+
+        limits:
+            cpu: 500m
+
+        -> Here 500m is 500 milli cpu, the container use upto 500m cpu not more than that 
+
+    -> kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+
+    -> Kubernetes Production Setup 
+
+        -> In production environments, it is common to use managed Kubernetes services 
+        provided by cloud providers rather than running and managing your own Kubernetes clusters.
+
+        -> High Availability and Reliability: Managed Kubernetes services are designed to 
+            provide high availability and reliability.
+        
+        -> They typically run multiple master nodes across different availability zones, 
+            ensuring that the control plane is resilient to failures.
+
+        -> Popular examples of managed Kubernetes services include 
+        Amazon Elastic Kubernetes Service (Amazon EKS) on AWS, 
+        Azure Kubernetes Service (AKS) on Microsoft Azure, and 
+        Google Kubernetes Engine (GKE) on Google Cloud Platform.
+
+
+
+
+
+
+
+
+
