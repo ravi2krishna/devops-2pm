@@ -1,0 +1,36 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lms-ingress
+spec:
+  ingressClassName: nginx-example
+  rules:
+  - http:
+      paths:
+      - path: /courses
+        pathType: Prefix
+        backend:
+          service:
+            name: cluster-ip-svc-courses
+            port:
+              number: 80
+
+  - http:
+      paths:
+      - path: /learners
+        pathType: Prefix
+        backend:
+          service:
+            name: cluster-ip-svc-learners
+            port:
+              number: 80
+
+  - http:
+      paths:
+      - path: /leads
+        pathType: Prefix
+        backend:
+          service:
+            name: cluster-ip-svc-leads
+            port:
+              number: 80
